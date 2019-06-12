@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: trabalho-final-web
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: cdup
+Implementation-Vendor-Id: trabalho-final-web
+Build-Jdk: 1.8.0_212
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/trabalho-final-web
+Created-By: Maven Integration for Eclipse
+

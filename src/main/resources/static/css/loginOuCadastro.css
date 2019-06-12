@@ -1,0 +1,128 @@
+@charset "UTF-8";
+body, html {
+	height: 100%;
+}
+h2 {
+	font-size: 25px;
+	text-align: center
+}
+h1 {
+	margin-top: 50px;
+	text-align: center;
+	color: #002d75
+}
+.conteudo{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	height: 100%;
+}
+.divFormularios{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 50%;
+	align-self: center;
+	margin-top: 50px;
+}
+.divFormulario {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center
+}
+form {
+	padding: 50px auto;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	padding-top: 10px;
+	padding-left: 0;
+	padding-right: 0;
+	box-sizing: border-box;
+	padding-bottom: 20px;
+}
+form div {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+form div label {
+	color: black;
+	margin-right: 15px;
+}
+form div input {
+	color: black;
+	width: 180px;
+}
+.inputDiv {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+.ultimaInputDiv {
+	margin-bottom: 50px;
+}
+.separadorFormularios {
+	width: 10px;
+	height: auto;
+	background-image: linear-gradient(to right, #0061c9 , #68a2ff);
+}
+@media ( max-width : 1100px) {
+	form div input {
+		color: black;
+		width: 195px;
+	}
+	.divFormularios{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 50%;
+		align-self: center;	
+		margin-top: 30px;		
+	}
+	.divFormulario{
+		padding: 0 6px;
+	}
+	.separadorFormularios {
+		width: 100%;
+		height: 10px;
+		margin-bottom: 50px
+	}
+	.divFormularioLogin{
+		margin-top: 50px	
+	}
+}
+@media ( max-width : 400px) {
+	h1 {
+		font-size: 35px;
+		margin-top: 20px;
+	}
+	form div input {
+		color: black;
+		width: 195px;
+	}
+	.divFormularios{
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 100%;
+		align-self: center		
+	}
+	.divFormulario{
+		padding: 0 6px;
+	}
+	.divFormularioLogin{
+		margin: 50px 0	
+	}
+	.separadorFormularios {
+		width: 100%;
+		height: 10px;
+		margin-bottom: 50px
+	}
+}

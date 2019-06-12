@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/loginOuCadastro.css">
+</head>
+<body>
+	<div class="conteudo">
+		<h1>Seja bem vindo(a)!</h1>
+		<div class="divFormularios">
+			<div class="divFormularioLogin divFormulario">
+				<h2>Já sou cliente</h2>
+				<form action="/fazerLogin" method="post">
+					<div class="inputDiv">
+						<label for="nome">E-mail:</label> <input type="text" id="nome" />
+					</div>
+					<div class="inputDiv ultimaInputDiv">
+						<label for="email">Senha:</label> <input type="email" id="email" />
+					</div>
+					<input type="submit" class="btn btn-primary" value="Login" />
+				</form>
+			</div>
+			<div class="separadorFormularios"></div>
+			<div class="divFormularioCadastro divFormulario">
+				<h2>Quero me cadastrar</h2>
+				<form id="my-form" action="/cadastrarCliente" method="POST">
+					<div class="inputDiv">
+						<label for="nome">Nome:</label> <input type="text" name="nome" />
+					</div>
+					<div class="inputDiv">
+						<label for="nome">E-mail:</label> <input type="text" name="email" />
+					</div>
+					<div class="inputDiv">
+						<label for="nome">Endereço:</label> <input type="text"
+							name="endereco" />
+					</div>
+					<div class="inputDiv">
+						<label for="nome">CPF:</label> <input type="text" name="cpf" />
+					</div>
+					<div class="inputDiv ultimaInputDiv">
+						<label for="nome">Senha:</label> <input type="text" name="senha" />
+					</div>
+					<input type="submit" class="btn btn-primary" value="Cadastrar-se" />
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

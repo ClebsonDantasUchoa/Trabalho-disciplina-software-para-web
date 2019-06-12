@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/loginOuCadastro.css">
+</head>
+<body>
+	<div class="conteudo">
+		<h1>Cadastrar um novo prato</h1>
+		<div class="divFormularios">
+			<div class="divFormularioLogin divFormulario">
+				<form action="/cadastrarPrato" method="post" enctype="multipart/form-data">
+					<div class="inputDiv">
+						<label for="nome">Nome: </label> <input type="text" name="nome" />
+					</div>
+					<div class="inputDiv">
+						<label for="email">Valor: </label> <input type="number" name="valor" />
+					</div>
+					<div class="inputDiv ultimaInputDiv">
+						<label for="email">Selecionar foto: </label> <input type="file" name="imagem">
+					</div>
+					<input type="submit" class="btn btn-primary" value="Cadastrar" />
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
