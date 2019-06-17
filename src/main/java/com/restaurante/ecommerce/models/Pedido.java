@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,7 +19,7 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Prato> pratos;
 	
 	private boolean concluido;
@@ -29,8 +31,11 @@ public class Pedido {
 	
 	public float calcularValor() {
 		float valor = 0f;
-		for(Prato prato: pratos)
+		for(Prato prato: pratos) {
+			System.out.println("Nome do prato: " + prato.getNome() + " Valor: " + prato.getValor());
 			valor += prato.getValor();
+		}
+		System.out.println("------------------------------------------");	
 		return valor;
 	}
 	

@@ -53,4 +53,14 @@ public class PedidoController {
 		return mv;
 	}
 	
+	@RequestMapping("/fechar")
+	public ModelAndView fecharPedido() {
+		System.out.println("fechou");
+		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
+		cliente.finalizarUltimoPedido();
+		clienteRepository.save(cliente); 
+		ModelAndView mv = new ModelAndView("redirect:/");
+		return mv;
+	}
+	
 }
