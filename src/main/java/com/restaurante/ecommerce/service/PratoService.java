@@ -13,17 +13,30 @@ import com.restaurante.ecommerce.util.ProjectFileUtils;
 @Service
 public class PratoService {
 	
+	private ProjectFileUtils projectFileUtils = new ProjectFileUtils(); 
+	
 	@Autowired
 	private PratoRepository pratoRepository;
 	
 	public void cadastrar(Prato prato, MultipartFile imagem) {
 		pratoRepository.save(prato);
 		String caminho = "imagens/pratos/"+prato.getId()+".jpg";
-		ProjectFileUtils.salvarImagem(caminho, imagem);
+		if(!imagem.isEmpty()) projectFileUtils.salvarImagem(caminho, imagem);
 	}
 	
 	public List<Prato> retornarTodosOsPratos() {
 		return pratoRepository.findAll();
+	}
+
+	public void excluirPrato(Long id) {
+		String caminho = "imagens/pratos/"+id+".jpg";
+		System.out.println(caminho);
+		projectFileUtils.apagarImagem(caminho);
+		pratoRepository.deleteById(id);
+	}
+	
+	public Prato buscarPrato(Long id) {
+		return pratoRepository.getOne(id);
 	}
 	
 }

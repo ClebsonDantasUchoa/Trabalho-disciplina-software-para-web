@@ -75,19 +75,18 @@
 
 	<header>
 		<h1>Dijsktra Restaurant</h1>
-		<i class="material-icons">add_shopping_cart</i>
 		<nav class="menu">
 			<ul>
-				<li><a href="#">Pratos</a></li>
-				<li><a href="#">Pedidos</a></li>
+				<li><a th:href="@{pedido/listar}">Pedidos</a></li>
 				<li><a th:href="@{cadastroPrato}">Cadastrar Prato</a></li>
 				<li><a th:href="@{loginOuCadastro}">Login</a></li>
 			</ul>
 		</nav>
 	</header>
 	<div class="apresentacao">
-		<img src="https://lovingnewyork.com.br/wp-content/uploads/2019/01/Restaurantes-romanticos-em-nova-york-190108105239001-1600x960-1600x960.jpg" alt=""
-			class="imagem_area_principal">
+		<img
+			src="https://lovingnewyork.com.br/wp-content/uploads/2019/01/Restaurantes-romanticos-em-nova-york-190108105239001-1600x960-1600x960.jpg"
+			alt="" class="imagem_area_principal">
 		<div class="descricao_lateral">
 			<h2 class="titulo_cardapio">"Mais que um restaurante. Uma
 				experiência"</h2>
@@ -102,9 +101,24 @@
 	<h2 class="titulo_cardapio">Nosso cardápio</h2>
 	<div class="cardapio">
 		<div class="card-foto" th:each="prato : ${listaDePratos}">
+			<div class="btn-group">
+				<button type="button" class="btn btn-info dropdown-toggle"
+					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					&#9776</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item"
+						th:href="@{/atualizarPrato/{id}(id = ${prato.id})}">Atualizar</a>
+					<a class="dropdown-item"
+						th:href="@{/excluirPrato/{id}(id = ${prato.id})}">Apagar</a>
+				</div>
+			</div>
 			<h3 th:text="${prato.nome}"></h3>
 			<img th:src="@{'/imagens/pratos/'+${prato.id}+.jpg}">
 			<h4 th:text="'R$ '+ ${prato.valor}"></h4>
+			<a th:href="@{/pedido/adicionarPrato/{id}(id = ${prato.id})}">
+				<i class="material-icons">add_shopping_cart</i> 
+			</a>
+
 		</div>
 	</div>
 	<footer>

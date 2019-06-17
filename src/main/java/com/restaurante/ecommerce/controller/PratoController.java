@@ -2,6 +2,7 @@ package com.restaurante.ecommerce.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,22 @@ public class PratoController {
 	@RequestMapping("/cadastroPrato")
 	public ModelAndView cadastroPrato() {
 		ModelAndView mv = new ModelAndView("cadastroPrato");
+		mv.addObject("prato", new Prato());
+		return mv;
+	}
+	
+	@RequestMapping("/excluirPrato/{id}")
+	public ModelAndView excluirPrato(@PathVariable Long id) {
+		pratoService.excluirPrato(id);
+		ModelAndView mv = new ModelAndView("redirect:/");
+		return mv;
+	}
+	
+	@RequestMapping("/atualizarPrato/{id}")
+	public ModelAndView atualizarPrato(@PathVariable Long id) {
+		Prato prato = pratoService.buscarPrato(id);
+		ModelAndView mv = new ModelAndView("cadastroPrato");
+		mv.addObject("prato", prato);
 		return mv;
 	}
 	

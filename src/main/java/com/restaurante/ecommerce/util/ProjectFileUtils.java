@@ -8,8 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ProjectFileUtils {
 	
-	public static void salvarImagem(String caminho, MultipartFile imagem) {
-		System.out.println("AAAAAAAAAAAAcaminho aqui oh: " + caminho);
+	public void salvarImagem(String caminho, MultipartFile imagem) {
 		File file = new File(caminho);
 		try {
 			FileUtils.writeByteArrayToFile(file, imagem.getBytes());
@@ -17,6 +16,12 @@ public class ProjectFileUtils {
 			System.out.println("ERRO AO SALVAR AQUIVO: " + e.toString());
 		}
 		
+	}
+	
+	public void apagarImagem(String caminho) {
+		System.out.println("caminho da imagem: "+caminho);
+		File file = new File(caminho);
+		file.delete();
 	}
 
 }

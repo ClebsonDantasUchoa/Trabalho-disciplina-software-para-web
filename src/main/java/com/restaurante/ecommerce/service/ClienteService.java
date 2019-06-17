@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.restaurante.ecommerce.models.Cliente;
 import com.restaurante.ecommerce.models.Pessoa;
+import com.restaurante.ecommerce.models.Prato;
 import com.restaurante.ecommerce.repository.ClienteRepository;
 
 @Service
@@ -16,4 +17,15 @@ public class ClienteService {
 	public void cadastrar(Cliente cliente) {
 		clienteRepository.save(cliente);
 	}
+	
+	public Pessoa buscarPorId(Long id) {
+		return clienteRepository.getOne(id);
+	}
+	
+	public void adicionarPratoNoPedido(Cliente cliente, Prato prato) {
+		if(!cliente.verificarPrato(prato)) {
+			cliente.adicionarPratoAoPedido(prato);
+		}		
+	}
+	
 }

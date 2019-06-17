@@ -4,19 +4,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/loginOuCadastro.css">
+<link rel="stylesheet" href="/css/loginOuCadastro.css">
 </head>
 <body>
+	
 	<div class="conteudo">
-		<h1>Cadastrar um novo prato</h1>
+		<h1 >Cadastrar um novo prato</h1>
 		<div class="divFormularios">
 			<div class="divFormularioLogin divFormulario">
-				<form action="/cadastrarPrato" method="post" enctype="multipart/form-data">
+				<form action="/cadastrarPrato" method="post" enctype="multipart/form-data" th:object="${prato}">
+					<input type="hidden" th:field="*{id}" />
 					<div class="inputDiv">
-						<label for="nome">Nome: </label> <input type="text" name="nome" />
+						<label for="nome">Nome: </label> <input type="text" th:field="*{nome}" />
 					</div>
 					<div class="inputDiv">
-						<label for="email">Valor: </label> <input type="number" name="valor" />
+						<label for="email">Valor: </label> <input type="number" th:field="*{valor}" />
 					</div>
 					<div class="inputDiv ultimaInputDiv">
 						<label for="email">Selecionar foto: </label> <input type="file" name="imagem">
