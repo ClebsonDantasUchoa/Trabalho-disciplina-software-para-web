@@ -3,6 +3,8 @@ package com.restaurante.ecommerce.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +34,7 @@ public class PedidoController {
 	
 	@RequestMapping("/adicionarPrato/{id}")
 	public ModelAndView adicionarPratoAoPedido(@PathVariable Long id) {
-		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
+		Cliente cliente = clienteService.recuperarUsuarioLogado(); 
 		Prato prato = pratoService.buscarPrato(id);
 		clienteService.adicionarPratoNoPedido(cliente, prato);
 		clienteRepository.save(cliente);
@@ -43,8 +45,8 @@ public class PedidoController {
 	@RequestMapping("/listar")
 	public ModelAndView listarPedidos() {
 		ModelAndView mv = new ModelAndView("Pedidos");
-		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
-		
+		Cliente cliente = clienteService.recuperarUsuarioLogado();
+		System.out.println("Cliente: " + cliente.getNome());
 		List<Pedido> pedidos = cliente.getPedidos();
 		Pedido pedidoAtual = pedidos.remove(pedidos.size()-1);
 		mv.addObject("pedidoAtual", pedidoAtual);
@@ -56,11 +58,20 @@ public class PedidoController {
 	@RequestMapping("/fechar")
 	public ModelAndView fecharPedido() {
 		System.out.println("fechou");
-		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
+		Cliente cliente = clienteService.recuperarUsuarioLogado();
 		cliente.finalizarUltimoPedido();
 		clienteRepository.save(cliente); 
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
 	}
 	
+	@RequestMapping("/removerPrato/{id}")
+	public ModelAndView removerPrato(@PathVariable Long id) {
+		Cliente cliente = clienteService.recuperarUsuarioLogado();
+		cliente.removerPratoDoPedidoAtual(id);
+		clienteRepository.save(cliente);
+		ModelAndView mv = new ModelAndView("redirect:../listar");
+		return mv;
+	}
+		
 }

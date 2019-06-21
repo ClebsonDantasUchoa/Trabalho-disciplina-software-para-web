@@ -15,6 +15,8 @@
 				<li><a th:href="@{/}">Inicio</a></li>
 				<li><a th:href="@{pedido/listar}">Pedidos</a></li>
 				<li><a th:href="@{cadastroPrato}">Cadastrar Prato</a></li>
+				<li><a th:href="@{loginOuCadastro}">Login</a></li>
+				<li><a th:href="@{logout}">Logout</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -23,12 +25,12 @@
 		<div class="divFormularios">
 			<div class="divFormularioLogin divFormulario">
 				<h2>Já sou cliente</h2>
-				<form action="/fazerLogin" method="post">
+				<form method="post">
 					<div class="inputDiv">
-						<label for="nome">E-mail:</label> <input type="text" id="nome" />
+						<label for="nome">E-mail:</label> <input name="username" type="text" id="nome" />
 					</div>
 					<div class="inputDiv ultimaInputDiv">
-						<label for="email">Senha:</label> <input type="email" id="email" />
+						<label for="senha">Senha:</label> <input name="password" type="text" id="senha" />
 					</div>
 					<input type="submit" class="btn btn-primary" value="Login" />
 				</form>

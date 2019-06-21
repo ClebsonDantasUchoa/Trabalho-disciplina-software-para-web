@@ -24,10 +24,12 @@
 		<tr>
 			<td>Prato</td>
 			<td>Valor</td>
+			<td>Opção</td>
 		</tr>
 		<tr th:each="prato : ${pedidoAtual.pratos}">
 			<td th:text="${prato.nome}"></td>
 			<td th:text="${prato.valor}"></td>
+			<td><a th:href="@{/pedido/removerPrato/{id}(id = ${prato.id})}">Remover</a></td>
 		</tr>
 		<tr>
 			<td th:text="${pedidoAtual.calcularValor()}"></td>

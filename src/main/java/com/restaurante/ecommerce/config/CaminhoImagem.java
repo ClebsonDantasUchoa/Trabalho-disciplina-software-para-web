@@ -14,6 +14,4 @@ public class CaminhoImagem implements WebMvcConfigurer{
 		WebMvcConfigurer.super.addResourceHandlers(registry);
 	}
 	
-	
-	
 }

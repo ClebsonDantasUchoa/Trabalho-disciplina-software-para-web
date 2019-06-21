@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,9 +78,11 @@
 		<h1>Dijsktra Restaurant</h1>
 		<nav class="menu">
 			<ul>
+				<li><a th:href="@{/}">Inicio</a></li>
 				<li><a th:href="@{pedido/listar}">Pedidos</a></li>
 				<li><a th:href="@{cadastroPrato}">Cadastrar Prato</a></li>
 				<li><a th:href="@{loginOuCadastro}">Login</a></li>
+				<li><a th:href="@{logout}">Logout</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -101,7 +104,7 @@
 	<h2 class="titulo_cardapio">Nosso cardápio</h2>
 	<div class="cardapio">
 		<div class="card-foto" th:each="prato : ${listaDePratos}">
-			<div class="btn-group">
+			<div sec:authorize="hasRole('ROLE_ADMIN')" class="btn-group" >
 				<button type="button" class="btn btn-info dropdown-toggle"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					&#9776</button>
@@ -112,9 +115,9 @@
 						th:href="@{/excluirPrato/{id}(id = ${prato.id})}">Apagar</a>
 				</div>
 			</div>
-			<h3 th:text="${prato.nome}"></h3>
+			<h3  th:text="${prato.nome}"></h3>
 			<img th:src="@{'/imagens/pratos/'+${prato.id}+.jpg}">
-			<h4 th:text="'R$ '+ ${prato.valor}"></h4>
+			<h4  th:text="'R$ '+ ${prato.valor}"></h4>
 			<a th:href="@{/pedido/adicionarPrato/{id}(id = ${prato.id})}">
 				<i class="material-icons">add_shopping_cart</i> 
 			</a>

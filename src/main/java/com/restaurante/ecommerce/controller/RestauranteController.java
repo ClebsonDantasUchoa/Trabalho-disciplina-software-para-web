@@ -28,8 +28,29 @@ public class RestauranteController {
 		mv.addObject("listaDePratos", pratos);
 		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
 		System.out.println("tamanho da lista de pedidos: " + cliente.getPedidos().size());
-		return mv;
-		
+		return mv;	
 	}
+	
+	@RequestMapping("/inicio")
+	public ModelAndView index() {
+		List<Prato> pratos = pratoService.retornarTodosOsPratos(); 
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("listaDePratos", pratos);
+		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
+		System.out.println("tamanho da lista de pedidos: " + cliente.getPedidos().size());
+		return mv;	
+	}
+	
+	/*
+	@RequestMapping("/login")
+	public ModelAndView login() {
+		List<Prato> pratos = pratoService.retornarTodosOsPratos(); 
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("listaDePratos", pratos);
+		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
+		System.out.println("tamanho da lista de pedidos: " + cliente.getPedidos().size());
+		return mv;	
+	}
+	*/
 
 }

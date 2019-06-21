@@ -24,9 +24,27 @@ public class Pedido {
 	
 	private boolean concluido;
 	
+	private String endereco;
+	
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
 	public Pedido() {
 		pratos = new ArrayList<Prato>();
 		this.concluido = false;
+	}
+	
+	public void removerPrato(Long id) {
+		for(Prato prato: pratos)
+			if(prato.getId() == id) {
+				pratos.remove(prato);
+				break;
+			}
 	}
 	
 	public float calcularValor() {
@@ -35,7 +53,6 @@ public class Pedido {
 			System.out.println("Nome do prato: " + prato.getNome() + " Valor: " + prato.getValor());
 			valor += prato.getValor();
 		}
-		System.out.println("------------------------------------------");	
 		return valor;
 	}
 	
@@ -66,4 +83,5 @@ public class Pedido {
 	public void setPratos(List<Prato> pratos) {
 		this.pratos = pratos;
 	}
+
 }

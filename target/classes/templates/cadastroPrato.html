@@ -5,9 +5,21 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/loginOuCadastro.css">
+<link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-	
+	<header>
+		<h1>Dijsktra Restaurant</h1>
+		<nav class="menu">
+			<ul>
+				<li><a th:href="@{/}">Inicio</a></li>
+				<li><a th:href="@{pedido/listar}">Pedidos</a></li>
+				<li><a th:href="@{cadastroPrato}">Cadastrar Prato</a></li>
+				<li><a th:href="@{loginOuCadastro}">Login</a></li>
+				<li><a th:href="@{logout}">Logout</a></li>
+			</ul>
+		</nav>
+	</header>
 	<div class="conteudo">
 		<h1 >Cadastrar um novo prato</h1>
 		<div class="divFormularios">

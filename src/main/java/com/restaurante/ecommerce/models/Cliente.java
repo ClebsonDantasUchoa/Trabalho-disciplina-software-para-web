@@ -44,4 +44,7 @@ public class Cliente extends Pessoa{
 		return this.pedidos;
 	}
 	
+	public void removerPratoDoPedidoAtual(Long id) {
+		ultimoPedido().removerPrato(id);
+	}
 }
