@@ -50,7 +50,6 @@ public class Pedido {
 	public float calcularValor() {
 		float valor = 0f;
 		for(Prato prato: pratos) {
-			System.out.println("Nome do prato: " + prato.getNome() + " Valor: " + prato.getValor());
 			valor += prato.getValor();
 		}
 		return valor;

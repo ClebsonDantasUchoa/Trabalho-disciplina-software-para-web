@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.restaurante.ecommerce.models.Cliente;
@@ -32,11 +33,16 @@ public class PedidoController {
 	@Autowired
 	private PratoService pratoService;
 	
+	
+	
 	@RequestMapping("/adicionarPrato/{id}")
 	public ModelAndView adicionarPratoAoPedido(@PathVariable Long id) {
 		Cliente cliente = clienteService.recuperarUsuarioLogado(); 
 		Prato prato = pratoService.buscarPrato(id);
 		clienteService.adicionarPratoNoPedido(cliente, prato);
+		System.out.println("-------------ADICIONAR--------------");
+		System.out.println("Número de pedidos: " + cliente.getPedidos().size());
+		System.out.println("\n");
 		clienteRepository.save(cliente);
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
@@ -46,7 +52,10 @@ public class PedidoController {
 	public ModelAndView listarPedidos() {
 		ModelAndView mv = new ModelAndView("Pedidos");
 		Cliente cliente = clienteService.recuperarUsuarioLogado();
-		System.out.println("Cliente: " + cliente.getNome());
+		System.out.println("-------------LISTAR--------------");
+		System.out.println("Número de pedidos: " + cliente.getPedidos().size());
+		System.out.println("Quantidade de pratos do ultimo pedido: " + cliente.ultimoPedido().getPratos().size());
+		System.out.println("\n");
 		List<Pedido> pedidos = cliente.getPedidos();
 		Pedido pedidoAtual = pedidos.remove(pedidos.size()-1);
 		mv.addObject("pedidoAtual", pedidoAtual);
@@ -55,13 +64,31 @@ public class PedidoController {
 		return mv;
 	}
 	
+	//
 	@RequestMapping("/fechar")
-	public ModelAndView fecharPedido() {
-		System.out.println("fechou");
+	//public ModelAndView fecharPedido() {
+	public ModelAndView fecharPedido(@RequestParam("endereco") String endereco) {
+		System.out.println("-----------------------------");
+		System.out.println("ENDEREÇO: " + endereco);
 		Cliente cliente = clienteService.recuperarUsuarioLogado();
-		cliente.finalizarUltimoPedido();
-		clienteRepository.save(cliente); 
-		ModelAndView mv = new ModelAndView("redirect:/");
+		
+		cliente.finalizarUltimoPedido(endereco);
+		
+		clienteRepository.save(cliente);
+		
+		cliente = clienteService.recuperarUsuarioLogado();
+		System.out.println("-------------FECHAR--------------");
+		System.out.println("Número de pedidos: " + cliente.getPedidos().size());
+		System.out.println("Quantidade de pratos do ultimo pedido: " + cliente.ultimoPedido().getPratos().size());
+		System.out.println("\n");
+		/*
+		ModelAndView mv = new ModelAndView("Pedidos");
+		List<Pedido> pedidos = cliente.getPedidos();
+		Pedido pedidoAtual = pedidos.remove(pedidos.size()-1);
+		mv.addObject("pedidoAtual", pedidoAtual);
+		mv.addObject("pedidos", pedidos);
+		*/
+		ModelAndView mv = new ModelAndView("redirect:/pedido/listar");
 		return mv;
 	}
 	

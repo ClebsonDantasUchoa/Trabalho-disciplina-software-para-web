@@ -26,8 +26,6 @@ public class RestauranteController {
 		List<Prato> pratos = pratoService.retornarTodosOsPratos(); 
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("listaDePratos", pratos);
-		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
-		System.out.println("tamanho da lista de pedidos: " + cliente.getPedidos().size());
 		return mv;	
 	}
 	
@@ -36,8 +34,6 @@ public class RestauranteController {
 		List<Prato> pratos = pratoService.retornarTodosOsPratos(); 
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("listaDePratos", pratos);
-		Cliente cliente = (Cliente) clienteService.buscarPorId((long) 44);
-		System.out.println("tamanho da lista de pedidos: " + cliente.getPedidos().size());
 		return mv;	
 	}
 	

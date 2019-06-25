@@ -79,10 +79,10 @@ xmlns:th="http://www.thymeleaf.org">
 		<nav class="menu">
 			<ul>
 				<li><a th:href="@{/}">Inicio</a></li>
-				<li><a th:href="@{pedido/listar}">Pedidos</a></li>
-				<li><a th:href="@{cadastroPrato}">Cadastrar Prato</a></li>
+				<li sec:authorize="hasRole('ROLE_CLIENTE')"><a th:href="@{pedido/listar}">Pedidos</a></li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{cadastroPrato}">Cadastrar Prato</a></li>
 				<li><a th:href="@{loginOuCadastro}">Login</a></li>
-				<li><a th:href="@{logout}">Logout</a></li>
+				<li sec:authorize="isAuthenticated()"><a th:href="@{logout}">Logout</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -118,7 +118,7 @@ xmlns:th="http://www.thymeleaf.org">
 			<h3  th:text="${prato.nome}"></h3>
 			<img th:src="@{'/imagens/pratos/'+${prato.id}+.jpg}">
 			<h4  th:text="'R$ '+ ${prato.valor}"></h4>
-			<a th:href="@{/pedido/adicionarPrato/{id}(id = ${prato.id})}">
+			<a th:href="@{/pedido/adicionarPrato/{id}(id = ${prato.id})}" sec:authorize="!hasRole('ROLE_ADMIN')">
 				<i class="material-icons">add_shopping_cart</i> 
 			</a>
 

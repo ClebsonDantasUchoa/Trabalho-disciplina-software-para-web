@@ -21,7 +21,7 @@ public class PessoaController {
 	@PostMapping("/cadastrarCliente")
 	public ModelAndView cadastrar(Cliente cliente, Model model) {
 		clienteService.cadastrar(cliente);
-		ModelAndView mv = new ModelAndView("paginaInicialCliente");
+		ModelAndView mv = new ModelAndView("index");
 		return mv;
 	}
 	

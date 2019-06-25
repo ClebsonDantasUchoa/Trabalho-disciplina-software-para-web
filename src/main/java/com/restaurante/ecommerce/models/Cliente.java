@@ -6,11 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Cliente extends Pessoa{
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@OrderBy( value = "id" )
 	private List<Pedido> pedidos;
 	
 	public Cliente() {
@@ -18,21 +20,21 @@ public class Cliente extends Pessoa{
 		inicilaizarPedido();
 	}
 
-	private void inicilaizarPedido() {
-		Pedido pedido = new Pedido();
-		pedidos.add(pedido);
+	private void inicilaizarPedido() {		
+		pedidos.add(pedidos.size(), new Pedido());
 	}
 	
 	public void adicionarPratoAoPedido(Prato prato) {
 		ultimoPedido().adicionarPrato(prato);
 	}
 	
-	public void finalizarUltimoPedido() {
+	public void finalizarUltimoPedido(String endereco) {
 		ultimoPedido().setConcluido();
+		ultimoPedido().setEndereco(endereco);
 		inicilaizarPedido();
 	}
 	
-	private Pedido ultimoPedido() {
+	public Pedido ultimoPedido() {
 		return pedidos.get(pedidos.size()-1);
 	}
 	
@@ -47,4 +49,5 @@ public class Cliente extends Pessoa{
 	public void removerPratoDoPedidoAtual(Long id) {
 		ultimoPedido().removerPrato(id);
 	}
+	
 }

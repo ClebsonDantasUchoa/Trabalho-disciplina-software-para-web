@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 
@@ -12,7 +13,7 @@
 		<nav class="menu">
 			<ul>
 				<li><a th:href="@{../}">Inicio</a></li>
-				<li><a th:href="@{../cadastroPrato}">Cadastrar Prato</a></li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{../cadastroPrato}">Cadastrar Prato</a></li>
 				<li><a th:href="@{../loginOuCadastro}">Login</a></li>
 			</ul>
 		</nav>
@@ -36,7 +37,11 @@
 		</tr>
 	</table>
 	<br>
-	<a th:href="@{fechar}">Fechar pedido atual</a>
+	<form action="fechar" method="POST">
+		<label>Informe o endereço: </label>
+		<input name="endereco" > <br><br>
+		<input type="submit" value="Fechar pedido atual">
+	</form>
 	<br>
 	<br>
 	<h2>Outros Pedidos</h2>
@@ -51,7 +56,8 @@
 			<td th:text="${pratoPassado.valor}"></td>
 		</tr>
 		<tr>
-			<td th:text="${pedido.calcularValor()}"></td>
+			<td th:text="'Total: ' + ${pedido.calcularValor()}"></td>
+			<td th:text="'Endereco: ' + ${pedido.endereco}"></td>
 		</tr>
 		<span>------------------------------------------------------</span>
 	</table>

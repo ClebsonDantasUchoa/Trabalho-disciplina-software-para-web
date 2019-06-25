@@ -23,15 +23,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().authorizeRequests()
 		.antMatchers("/").permitAll()
 		.antMatchers("/inicio").permitAll()
+		
 		.antMatchers("/loginOuCadastro").permitAll()
 		.antMatchers("/cadastrarCliente").permitAll()
+		
+		.antMatchers("/pedido/**").hasRole("CLIENTE")
 		
 		.antMatchers("/cadastroPrato").hasRole("ADMIN")
 		.antMatchers("/cadastrarPrato").hasRole("ADMIN")
 		
 		.anyRequest().authenticated()
 		
-		.and().formLogin().loginPage("/loginOuCadastro").defaultSuccessUrl("/").permitAll()
+		.and().formLogin().loginPage("/loginOuCadastro").defaultSuccessUrl("/inicio").permitAll()
 		.permitAll()
 		
 		.and().logout()
